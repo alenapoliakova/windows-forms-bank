@@ -16,7 +16,7 @@ namespace lab_1
         {
             InitializeComponent();
 
-            listBox1.Items.Add(new Person (
+            listBox1.Items.Add(new Person(
                 33355, "Alena", new DateTime(2003, 5, 6)
             ));
         }
@@ -59,7 +59,7 @@ namespace lab_1
                 }
             }
             else
-            { 
+            {
                 MessageBox.Show(Text = "Select one item to edit it");
             }
         }
@@ -80,49 +80,20 @@ namespace lab_1
             }
         }
 
-        private List<Person> SortItems(List<Person> items, string fieldSortName, string sortingType)
-        {
-            // Sort list of Person by current field with current type
-            if (fieldSortName == "NAME")
-            {
-                if (sortingType == ASC_SORT)
-                {
-                    items.Sort((person1, person2) => person1.Name.CompareTo(person2.Name));
-                }
-                else if (sortingType == DESC_SORT)
-                {
-                    items.Sort((person1, person2) => person2.Name.CompareTo(person1.Name));
-                }
-            }
-            else if (fieldSortName == "CARD")
-            {
-                if (sortingType == ASC_SORT)
-                {
-                    items.Sort((person1, person2) => person1.CardNumber.CompareTo(person2.CardNumber));
-                }
-                else if (sortingType == DESC_SORT)
-                {
-                    items.Sort((person1, person2) => person2.CardNumber.CompareTo(person1.CardNumber));
-                }
-            }
-            else if (fieldSortName == "AGE")
-            {
-                if (sortingType == ASC_SORT)
-                {
-                    items.Sort((person1, person2) => person1.Birthday.CompareTo(person2.Birthday));
-                }
-                else if (sortingType == DESC_SORT)
-                {
-                    items.Sort((person1, person2) => person2.Birthday.CompareTo(person1.Birthday));
-                }
-            }
-            return items;
-        }
-
         private void SortByName_Click(object sender, EventArgs e)
         {
             List<Person> items = listBox1.Items.OfType<Person>().ToList();
-            items = SortItems(items, "NAME", sortType.Text.ToString());
+            var sortingType = sortType.Text.ToString();
+
+            if (sortingType == ASC_SORT)
+            {
+                items.Sort((person1, person2) => person1.Name.CompareTo(person2.Name));
+            }
+            else if (sortingType == DESC_SORT)
+            {
+                items.Sort((person1, person2) => person2.Name.CompareTo(person1.Name));
+            }
+
             listBox1.Items.Clear();
             foreach (Person person in items)
             {
@@ -134,7 +105,17 @@ namespace lab_1
         private void SortByCard_Click(object sender, EventArgs e)
         {
             List<Person> items = listBox1.Items.OfType<Person>().ToList();
-            items = SortItems(items, "CARD", sortType.Text.ToString());
+            var sortingType = sortType.Text.ToString();
+
+            if (sortingType == ASC_SORT)
+            {
+                items.Sort((person1, person2) => person1.CardNumber.CompareTo(person2.CardNumber));
+            }
+            else if (sortingType == DESC_SORT)
+            {
+                items.Sort((person1, person2) => person2.CardNumber.CompareTo(person1.CardNumber));
+            }
+
             listBox1.Items.Clear();
             foreach (Person person in items)
             {
@@ -146,7 +127,17 @@ namespace lab_1
         private void SortByAge_Click(object sender, EventArgs e)
         {
             List<Person> items = listBox1.Items.OfType<Person>().ToList();
-            items = SortItems(items, "AGE", sortType.Text.ToString());
+            var sortingType = sortType.Text.ToString();
+
+            if (sortingType == ASC_SORT)
+            {
+                items.Sort((person1, person2) => person1.Birthday.CompareTo(person2.Birthday));
+            }
+            else if (sortingType == DESC_SORT)
+            {
+                items.Sort((person1, person2) => person2.Birthday.CompareTo(person1.Birthday));
+            }
+
             listBox1.Items.Clear();
             foreach (Person person in items)
             {
